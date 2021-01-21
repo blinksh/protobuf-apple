@@ -43,7 +43,7 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body_path: release.md
+        body_path: .build/release.md
         draft: false
         prerelease: false
 
