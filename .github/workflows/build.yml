@@ -17,7 +17,7 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
 
     - name: Delete release notes
-      run: rm -r .build/release.md
+      run: rm -f .build/release.md
 
     - name: update pods dynamic
       run: LANG=en_US.UTF-8 MATCH_O_TYPE=mh_dylib pod install --repo-update
