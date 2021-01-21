@@ -16,8 +16,11 @@ jobs:
     - name: xcode-select
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
 
+    - name: update pods
+      run: pod install --repo-update
+
     - name: build-protobuf
-      run: sudo swift run
+      run: swift run
 
     - name: Create Release
       id: create_release
