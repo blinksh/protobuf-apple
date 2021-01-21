@@ -18,9 +18,11 @@ jobs:
 
     - name: update pods
       run: LANG=en_US.UTF-8 pod install --repo-update
+      shell: bash
 
     - name: build-protobuf
       run: swift run
+      shell: bash
 
     - name: Create Release
       id: create_release

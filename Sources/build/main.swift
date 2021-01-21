@@ -25,7 +25,7 @@ let platforms: [Platform] = Platform.allCases
 
 for type in ["static", "dynamic"] {
 
-    try sh("LANG=en_US.UTF-8 MATCH_O_TYPE=\(type == "static" ? "staticlib" : "mh_dylib") pod install")
+    try sh("LANG=en_US.UTF-8 MATCH_O_TYPE=\(type == "static" ? "staticlib" : "mh_dylib") pod install --repo-update")
 
     try xcxcf(
         dirPath: ".build",
