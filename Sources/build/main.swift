@@ -69,8 +69,8 @@ if releaseNotes.isEmpty {
     releaseNotes = """
     Release notes:
 
-        | File                            | SHA 256                                             |
-        | ------------------------------- |:---------------------------------------------------:|
+    | File                            | SHA 256                                             |
+    | ------------------------------- |:---------------------------------------------------:|
     \(checksums.map {
         "    | \($0.file) | \($0.value) |"
     }.joined(separator: "\n"))
@@ -79,8 +79,9 @@ if releaseNotes.isEmpty {
 } else {
     releaseNotes += """
     \(checksums.map {
-        "    | \($0.file) | \($0.value) |"
+        "| \($0.file) | \($0.value) |"
     }.joined(separator: "\n"))
+
     """
 }
 
