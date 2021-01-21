@@ -23,9 +23,25 @@ let scheme = "Protobuf-C++"
 let framework = "Protobuf_C_"
 let platforms: [Platform] = Platform.allCases
 
-for type in ["static", "dynamic"] {
+let args = ProcessInfo.processInfo.arguments 
 
-    try sh("LANG=en_US.UTF-8 MATCH_O_TYPE=\(type == "static" ? "staticlib" : "mh_dylib") pod install --repo-update")
+let types: [String]
+
+var skipCocoapodsInstall = false
+
+if args.count > 1 && args[1] != "all" {
+    types = args[1].components(separatedBy: ",")
+    skipCocoapodsInstall = true
+} else {
+    types = ["static", "dynamic"]
+    skipCocoapodsInstall = false
+}
+
+for type in types {
+
+    if !skipCocoapodsInstall {
+        try sh("LANG=en_US.UTF-8 MATCH_O_TYPE=\(type == "static" ? "staticlib" : "mh_dylib") pod install --repo-update")
+    }
 
     try xcxcf(
         dirPath: ".build",
@@ -43,17 +59,32 @@ for type in ["static", "dynamic"] {
     }
 }
 
-var releaseNotes =
-"""
-Release notes:
+func read(atPath: String) throws -> String {
+  try String(contentsOf: URL(fileURLWithPath: atPath)) 
+}
 
-    | File                            | SHA 256                                             |
-    | ------------------------------- |:---------------------------------------------------:|
-\(checksums.map {
-    "    | \($0.file) | \($0.value) |"
-}.joined(separator: "\n"))
+var releaseNotes = (try? read(atPath: ".build/release.md")) ?? ""
 
-"""
+if releaseNotes.isEmpty {
+    releaseNotes = """
+    Release notes:
+
+        | File                            | SHA 256                                             |
+        | ------------------------------- |:---------------------------------------------------:|
+    \(checksums.map {
+        "    | \($0.file) | \($0.value) |"
+    }.joined(separator: "\n"))
+
+    """
+} else {
+    releaseNotes += """
+    \(checksums.map {
+        "    | \($0.file) | \($0.value) |"
+    }.joined(separator: "\n"))
+    """
+}
+
+
 
 try write(content: releaseNotes, atPath: ".build/release.md")
 

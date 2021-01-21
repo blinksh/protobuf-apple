@@ -16,12 +16,23 @@ jobs:
     - name: xcode-select
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
 
-    - name: update pods
-      run: LANG=en_US.UTF-8 pod install --repo-update
+    - name: Delete release notes
+      run: rm -r .build/release.md
+
+    - name: update pods dynamic
+      run: LANG=en_US.UTF-8 MATCH_O_TYPE=mh_dylib pod install --repo-update
       shell: bash
 
-    - name: build-protobuf
-      run: swift run
+    - name: build-protobuf-dynamic
+      run: swift run dynamic
+      shell: bash
+
+    - name: update pods static
+      run: LANG=en_US.UTF-8 MATCH_O_TYPE=staticlib pod install
+      shell: bash
+
+    - name: build-protobuf-static
+      run: swift run static
       shell: bash
 
     - name: Create Release
