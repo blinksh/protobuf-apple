@@ -17,7 +17,7 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
 
     - name: update pods
-      run: pod install --repo-update
+      run: LANG=en_US.UTF-8 pod install --repo-update
 
     - name: build-protobuf
       run: swift run
