@@ -17,7 +17,7 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
 
     - name: build-protobuf
-      run: swift run
+      run: sudo swift run
 
     - name: Create Release
       id: create_release
