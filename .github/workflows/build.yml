@@ -24,7 +24,7 @@ jobs:
       shell: bash
 
     - name: build-protobuf-dynamic
-      run: swift run dynamic
+      run: swift run build dynamic
       shell: bash
 
     - name: update pods static
@@ -32,7 +32,7 @@ jobs:
       shell: bash
 
     - name: build-protobuf-static
-      run: swift run static
+      run: swift run build static
       shell: bash
 
     - name: Create Release
