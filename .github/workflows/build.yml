@@ -15,6 +15,7 @@ jobs:
 
     - name: xcode-select
       run: sudo xcode-select -s /Applications/Xcode_12.3.app
+      run: sudo LANG=en_US.UTF-8 gem update cocoapods
 
     - name: build-protobuf
       run: swift run
