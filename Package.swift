@@ -5,7 +5,7 @@ _ = Package(
     name: "deps",
     platforms: [.macOS("11")],
     dependencies: [
-        .package(url: "https://github.com/yury/FMake", from: "0.0.9")
+        .package(url: "https://github.com/yury/FMake", from: "0.0.16")
         // .package(path: "../FMake")
     ],
     
