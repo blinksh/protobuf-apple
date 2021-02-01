@@ -23,6 +23,7 @@ let scheme = "Protobuf-C++"
 let framework = "Protobuf_C_"
 let platforms: [Platform] = Platform.allCases
 
+
 let args = ProcessInfo.processInfo.arguments 
 
 let types: [String]
@@ -72,7 +73,7 @@ if releaseNotes.isEmpty {
     | File                            | SHA 256                                             |
     | ------------------------------- |:---------------------------------------------------:|
     \(checksums.map {
-        "    | \($0.file) | \($0.value) |"
+        "| \($0.file) | \($0.value) |"
     }.joined(separator: "\n"))
 
     """
