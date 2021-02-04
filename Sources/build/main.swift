@@ -54,7 +54,7 @@ for type in types {
 
     try cd(".build") {
         let zip = "\(framework)-\(type).xcframework.zip"
-        try sh("zip -r \(zip) \(framework).xcframework")
+        try sh("zip --symlinks -r \(zip) \(framework).xcframework")
         let chksum = try sha(path: zip)
         checksums.append((file: zip, value: chksum))
     }
