@@ -5,7 +5,7 @@ platform :ios, '14.0'
 target 'xcprotobuf' do
   use_frameworks!
 
-  pod 'Protobuf-C++', '~> 3.14'
+  pod 'Protobuf-C++', '~> 3.21'
 end
 
 post_install do |installer|
